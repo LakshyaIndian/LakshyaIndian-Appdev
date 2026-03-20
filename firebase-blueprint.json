@@ -1,0 +1,60 @@
+{
+  "entities": {
+    "users": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "transcripts": {
+      "title": "Transcript",
+      "description": "Uploaded stock transcript and its analysis",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "fileName": { "type": "string" },
+        "content": { "type": "string" },
+        "bullArgs": { "type": "string" },
+        "bearArgs": { "type": "string" },
+        "summary": { "type": "string" },
+        "sentimentImageUrl": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "fileName", "content"]
+    },
+    "messages": {
+      "title": "Message",
+      "description": "Chat messages for a specific transcript",
+      "type": "object",
+      "properties": {
+        "transcriptId": { "type": "string" },
+        "userId": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "bull", "bear"] },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["transcriptId", "userId", "role", "content"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User profiles"
+    },
+    "/transcripts/{transcriptId}": {
+      "schema": "transcripts",
+      "description": "Stock transcripts and analysis"
+    },
+    "/transcripts/{transcriptId}/messages/{messageId}": {
+      "schema": "messages",
+      "description": "Chat messages for a transcript"
+    }
+  }
+}

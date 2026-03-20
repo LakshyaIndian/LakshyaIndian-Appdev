@@ -1,0 +1,5 @@
+{
+  "name": "StockSensei",
+  "description": "A full-stack PWA for analyzing stock transcripts with a Bull vs. Bear debate panel, interactive chat, and AI-generated sentiment gauges.",
+  "requestFramePermissions": []
+}
